@@ -1,0 +1,7 @@
+University of Saskatchewan thesis style
+
+Originally from here http://homepage.usask.ca/~ebs642/
+
+However, the email address listed is dead, and changes need to be made.
+
+This style has been updated to properly work with hyperref, as well as add a list of symbols in addition to the existing lists.

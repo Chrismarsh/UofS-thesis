@@ -1,0 +1,124 @@
+\documentclass[12pt,english]{thesis}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage[bookmarks=true,bookmarksopen=true, bookmarksopenlevel=0,bookmarksnumbered=true, plainpages=false,pdfborder={0 0 0}, colorlinks=true,linkcolor=black,citecolor=black]{hyperref}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FRONTMATTER - In this section, specify information to be used to typeset the thesis frontmatter.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Specify the title. Set the capitalization how you want it.
+\title{This is the Title of My Thesis}
+
+% Your name goes here.
+\author{Author's Name}
+
+% Degree sought.  Use \MSc or \PhD here
+\degree{\MSc}         
+
+% Expected convocation date.  Should be month/year, e.g. July 2004
+\convocationdate{Month/Year}
+
+% Your University.
+\university{University of Saskatchewan}
+
+% Your College.
+\college{College of Graduate Studies and Research}
+
+% Your Department.
+\department{Department of Mechanical Engineering}
+
+% Your City.
+\city{Saskatoon}
+
+% Department address, including city.
+\address{Saskatoon, Saskatchewan S7N 5A9}
+
+% Thesis abstract.  
+\abstract{
+This is the abstract of my thesis.  
+}
+
+% Thesis acknowlegements -- This can be free-form.
+\acknowledgements{
+Acknowledgements go here.  Typically you would at least thank your supervisor.
+}
+
+% Thesis dedication -- Also free-form.  If you don't want a dedication, comment out the following
+% line.
+\dedication{This is the thesis dedication (optional)}
+
+% List of abbreviations - Sample  
+% If you don't want a list of abbreviations, uncomment the following 5 lines.
+\loa
+{
+\abbrev{SCUBA}{Self Contained Underwater Breathing Apparatus}
+\abbrev{LOF}{List of Figures}
+\abbrev{LOT}{List of Tables}
+}
+
+\los
+{
+	\addsym{$X$}{Variable for x}
+	\addsym{$Y$}{Variable for y}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% END OF FRONTMATTER SECTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+\maketitle
+
+\frontmatter
+
+
+\chapter{Introduction}
+
+
+\section{Testing testing testing}
+
+\begin{equation}
+a=b\label{eq:}\end{equation}
+
+
+\begin{equation}
+b=c\label{eq:}\end{equation}
+
+
+
+\section{Test2}
+
+
+\begin{equation}
+c=d\label{eq:}\end{equation}
+
+
+
+\chapter{Apparatus}
+
+
+\section{Test3}
+
+\begin{equation}
+d=e\label{eq:}\end{equation}
+
+
+\begin{equation}
+e=f\label{eq:}\end{equation}
+
+
+\clearpage
+
+\bibliographystyle{unsrt}
+\phantomsection\addcontentsline{toc}{chapter}{\bibname}\bibliography{yourbibfile}
+ 
+\end{document}
