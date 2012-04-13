@@ -1,6 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
+% Version 1.6 - Modified by Chris Marsh 2012
+% Changes:
+%  - Added support for hyperref
+%  - Added list of symbols
+% 
 % Version 1.5 - Modified by Eric Sampson 2004/10/18, created by Mark G. Eramian
 %
 % Changes:
@@ -127,6 +130,7 @@
 \RequirePackage{tocloft}
 \RequirePackage{titlesec}
 \RequirePackage[tableposition=top]{caption}
+\usepackage[title,titletoc]{appendix}
 
 %2.54cm = 1in
 %11in = 27.94cm
@@ -522,5 +526,32 @@ Requests for permission to copy or to make other use of material in this thesis 
 
 \pagenumbering{arabic}
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+ % Appendix setup
+ %%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ % This command is defined to simplify setup for the typesetting of appendices.
+ 
+ \newcommand{\uofsappendix}{
+ % Sets chapter counter to appendix mode (counts by letters instead of numbers)
+\appendix
+ 
+ % This next line is needed to change the appendix chapter titles from reading
+ % "Chapter A" to "Appendix A".  This should not be necessary but it seems that
+ % the titlesec package overrides the changes to the chapter headings that
+ % the \appendix commands make.  We use the following workround:
+ \titleformat{\chapter}[display]{\renewcommand{\baselinestretch}{1.5}\normalsize
+ \LARGE\sc\fillast}{Appendix \thechapter}{0pt}{}
+ 
+ 
+ % This is needed to put a one-inch top margin on the first page of
+ % appendices -- this seems to be what CGSR wants.  If not, just comment
+ % out the next line.
+ \titlespacing{\chapter}{0pt}{-30pt}{20pt}
+ 
+ % Appendices need to be single-spaced.  Reset spacing to single
+ % regardless of global document spacing.
+ \renewcommand{\baselinestretch}{1}\normalsize
 
 
+ }
