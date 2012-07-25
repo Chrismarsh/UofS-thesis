@@ -10,7 +10,4 @@ Modifications:
 	- Addition of List of Symbols
 	- Addition of appendix
 
-Appendix usage:
-\uofsappendix
-\input{appendix.tex}
-
+See thesis_template.tex for example
