@@ -1,4 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Version 1.7 - Modified by Chris Marsh 2012
+% Changes:
+%  - Added support for line numbers that work with AMS Math
+%
 % Version 1.6 - Modified by Chris Marsh 2012
 % Changes:
 %  - Added support for hyperref
@@ -124,6 +128,10 @@
 \let\nofigurelist=Y
 }
 
+\DeclareOption{linenumber}{
+\let\linenum=Y
+}
+
 \ProcessOptions
 
 \LoadClassWithOptions{report}
@@ -174,6 +182,49 @@
     \else
         \renewcommand{\baselinestretch}{1}\normalize
     \fi
+\fi
+
+%enable line numbers
+\ifx\linenum\undefined
+    \relax
+\else
+   \usepackage{lineno}
+   %uncomment if you want line numbers to restart on each page
+%  \setpagewiselinenumbers
+   \def\linenumberfont{\normalfont\small\sffamily}
+
+
+   %patch for Ams math environment
+   %needs to be executed right before \begin{document}, and only if we are using amsmath
+    %http://simon.bonners.ca/blog///blog5.php/2010/10/06/line-number-and-amsmath
+
+
+      \AtBeginDocument
+      {
+          \@ifpackageloaded{amsmath}
+          {
+            \newcommand*\patchAmsMathEnvironmentForLineno[1]
+            {
+              \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+              \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+              \renewenvironment{#1}%
+              {\linenomath\csname old#1\endcsname}%
+              {\csname oldend#1\endcsname\endlinenomath}}% 
+              \newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+              \patchAmsMathEnvironmentForLineno{#1}%
+              \patchAmsMathEnvironmentForLineno{#1*}}%
+              \AtBeginDocument{%
+              \patchBothAmsMathEnvironmentsForLineno{equation}%
+              \patchBothAmsMathEnvironmentsForLineno{align}%
+              \patchBothAmsMathEnvironmentsForLineno{flalign}%
+              \patchBothAmsMathEnvironmentsForLineno{alignat}%
+              \patchBothAmsMathEnvironmentsForLineno{gather}%
+              \patchBothAmsMathEnvironmentsForLineno{multline}%
+            }
+          }
+    }
+    {\relax}
+
 \fi
 
 % Customize the table of contents title fonts
@@ -284,6 +335,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewcommand{\maketitle}{
+
+\ifx\linenum\undefined
+  \relax
+\else
+
+  \linenumbers
+\fi
+
 \addcontentsline{toc}{chapter}{Title}
 \refstepcounter{dummy}
 
@@ -403,7 +462,7 @@ Requests for permission to copy or to make other use of material in this thesis 
 \\\strut
 \indent Head of the \@department
 
-\@university
+%\@university
 
 \@address
 \newpage
