@@ -113,8 +113,12 @@
 
 \newcounter{dummy}
 
+%The idea with the PassOptionsToClass is to stop passing
+%porposal to the report class as it has no idea what it is
+%So in this case, only pass options it knows.
 \DeclareOption{singlespace}{
 \let\singlespace=Y
+\PassOptionsToClass{\CurrentOption}{report}
 }
 
 \DeclareOption{proposal}{
@@ -123,18 +127,24 @@
 
 \DeclareOption{notablelist}{
 \let\notablelist=Y
+\PassOptionsToClass{\CurrentOption}{report}
 }
 \DeclareOption{nofigurelist}{
 \let\nofigurelist=Y
+\PassOptionsToClass{\CurrentOption}{report}
 }
 
 \DeclareOption{linenumber}{
 \let\linenum=Y
 }
 
-\ProcessOptions
+%pass to baseclass *ONLY* the paramters it knows.
+\ProcessOptions \relax
+%this has been changed to hardcode 12pt font 
+%as that is what is "suggested"
+% http://www.usask.ca/cgsr/for_students/style.php
+\LoadClass[12pt]{report}
 
-\LoadClassWithOptions{report}
 \RequirePackage{tocloft}
 \RequirePackage{titlesec}
 \RequirePackage[tableposition=top]{caption}
@@ -190,7 +200,7 @@
 \else
    \usepackage{lineno}
    %uncomment if you want line numbers to restart on each page
-%  \setpagewiselinenumbers
+  \setpagewiselinenumbers
    \def\linenumberfont{\normalfont\small\sffamily}
 
 
