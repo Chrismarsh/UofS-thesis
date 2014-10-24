@@ -595,6 +595,33 @@ Requests for permission to copy or to make other use of material in this thesis 
 
 \pagenumbering{arabic}
 }
+
+%% Bibliography
+\newcommand{\uofsbibliography}[2]
+{
+
+  \clearpage
+
+  % We need to force single spacing for the bibliography which must be single
+  % spaced according to CGSR rules.  The line below changes spacing to single space.
+  % This command does not take effect until a new font size is selected, so we add
+  % the \normalsize command to make the spacing take effect.
+  {
+    \renewcommand{\baselinestretch}{1}\normalsize
+
+    % Select the title of the bibliography section by redefining the \bibname 
+    % command:
+    \renewcommand{\bibname}{References} 
+
+    % Add references to Table of Contents
+    \phantomsection\addcontentsline{toc}{chapter}{\bibname}
+
+    \bibliographystyle{#1}
+    \bibliography{#2}  
+  }
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%
  % Appendix setup
  %%%%%%%%%%%%%%%%%%%%%%%%%%
